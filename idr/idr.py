@@ -295,8 +295,8 @@ def build_rank_vectors(merged_peaks):
     rank1 = numpy.lexsort((numpy.random.random(len(s1)), s1)).argsort()
     rank2 = numpy.lexsort((numpy.random.random(len(s2)), s2)).argsort()
     
-    return ( numpy.array(rank1, dtype=numpy.int), 
-             numpy.array(rank2, dtype=numpy.int) )
+    return ( numpy.array(rank1, dtype=numpy.int_), 
+             numpy.array(rank2, dtype=numpy.int_) )
 
 def build_idr_output_line_with_bed6(
         m_pk, IDR, localIDR, output_file_type, signal_type, 
@@ -465,7 +465,8 @@ def write_results_to_file(merged_peaks, output_file,
     # write out the result
     idr.log("Writing results to file", "VERBOSE");
     
-    if localIDRs is None or IDRs is None:
+    #if localIDRs is None or IDRs is None:
+    if localIDRs.all() == None or IDRs.all() == None:
         assert IDRs is None
         assert localIDRs is None
         localIDRs = numpy.ones(len(merged_peaks))
